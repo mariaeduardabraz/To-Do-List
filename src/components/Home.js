@@ -5,10 +5,10 @@ import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 
 function Home() {
-    const [todos, setTodos] = useState([]); // useState: para a lista de tarefas
-    const { token, logout } = useAuth();    // useContext: para autenticação
+    const [todos, setTodos] = useState([]);
+    const { token, logout } = useAuth();
 
-    // useEffect: busca os dados da API assim que o componente é montado
+    // useEffect para buscar as tarefas
     useEffect(() => {
         const fetchTodos = async () => {
             try {
@@ -18,14 +18,13 @@ function Home() {
                 setTodos(response.data);
             } catch (error) {
                 console.error("Erro ao buscar tarefas:", error);
-                if (error.response.status === 401) logout(); // Desloga se o token for inválido
+                if (error.response && error.response.status === 401) logout();
             }
         };
         fetchTodos();
-    }, [token, logout]); // Dependências: refaz o fetch se o token mudar
+    }, [token, logout]);
 
-    // useCallback: Memoriza a função `addTodo`. Ela só será recriada se `token` mudar.
-    // Isso otimiza a performance, evitando que o componente `TodoForm` renderize sem necessidade.
+    // useCallback para adicionar tarefa
     const addTodo = useCallback(async (text) => {
         try {
             const response = await axios.post('http://localhost:5000/todos',
@@ -39,17 +38,41 @@ function Home() {
     }, [token]);
 
     const toggleTodo = async (id) => {
-        // ... (código para marcar/desmarcar, igual ao da resposta anterior)
+        try {
+            // 1. Faz a requisição para a API atualizar a tarefa no backend
+            const response = await axios.put(`http://localhost:5000/todos/${id}`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            // 2. Atualiza o estado local para refletir a mudança na tela
+            // O método .map() cria um novo array. Para cada 'todo', ele verifica:
+            // - Se o ID bate com o que foi alterado, ele retorna a nova versão (que veio da API).
+            // - Senão, ele retorna o 'todo' antigo sem modificação.
+            setTodos(todos.map(todo => 
+                todo.id === id ? response.data : todo
+            ));
+        } catch (error) {
+            console.error("Erro ao atualizar tarefa:", error);
+        }
     };
 
     const deleteTodo = async (id) => {
-        // ... (código para deletar, igual ao da resposta anterior)
+        try {
+            // 1. Faz a requisição para a API deletar a tarefa no backend
+            await axios.delete(`http://localhost:5000/todos/${id}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            // 2. Atualiza o estado local para refletir a mudança na tela
+            // O método .filter() cria um novo array contendo apenas os elementos
+            // que passam no teste (neste caso, todos cujo ID seja DIFERENTE do deletado).
+            setTodos(todos.filter(todo => todo.id !== id));
+        } catch (error) {
+            console.error("Erro ao deletar tarefa:", error);
+        }
     };
 
-    // useMemo: Memoriza o resultado de uma computação.
-    // A lista de `todos` só será re-renderizada se `todos` mudar.
     const todoCount = useMemo(() => {
-        console.log("Calculando contagem de tarefas...");
         return todos.filter(todo => !todo.completed).length;
     }, [todos]);
 
@@ -63,7 +86,12 @@ function Home() {
             <TodoForm addTodo={addTodo} />
             <ul className="todo-list">
                 {todos.map(todo => (
-                    <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        onToggle={toggleTodo} // Passando a função completa
+                        onDelete={deleteTodo} // Passando a função completa
+                    />
                 ))}
             </ul>
         </div>
