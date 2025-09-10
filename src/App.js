@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Login';
+import Home from './components/Home';
+import PrivateRoute from './components/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <AuthProvider>
+            <Router>
+                <div className="App">
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        {/* A rota '/' agora é protegida pelo PrivateRoute */}
+                        <Route path="/" element={<PrivateRoute />}>
+                            <Route path="/" element={<Home />} />
+                        </Route>
+                    </Routes>
+                </div>
+            </Router>
+        </AuthProvider>
+    );
 }
 
 export default App;

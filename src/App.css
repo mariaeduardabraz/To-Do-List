@@ -1,38 +1,125 @@
+/* src/App.css */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
 .App {
-  text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* --- Login Page --- */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-form {
+    width: 100%;
+    max-width: 320px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9em;
+}
+
+/* --- Home Page --- */
+header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+/* --- Todo Form --- */
+.todo-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.todo-form input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+/* --- Todo List --- */
+.todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+/* --- Buttons --- */
+button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
 }
