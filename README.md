@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+📝 Aplicação To-Do List Full Stack
+Uma aplicação web completa de lista de tarefas (To-Do List) desenvolvida para solidificar e demonstrar conceitos fundamentais do desenvolvimento Full Stack moderno, utilizando React no frontend e Node.js com Express no backend.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚀 Sobre o Projeto
+Este projeto consiste numa interface de cliente (frontend) reativa construída com React e numa API RESTful (backend) construída com Node.js e Express. A aplicação permite que utilizadores se autentiquem e giram as suas próprias listas de tarefas, com funcionalidades de criar, ler, atualizar e apagar (CRUD).
 
-## Available Scripts
+O principal objetivo foi aplicar e conectar de forma prática um conjunto de tecnologias e conceitos essenciais do ecossistema JavaScript, desde a criação da interface até à lógica do servidor e autenticação.
 
-In the project directory, you can run:
+✨ Funcionalidades
+🔐 Autenticação de Utilizadores: Sistema de login seguro utilizando JSON Web Token (JWT).
 
-### `npm start`
+📋 Gestão de Tarefas: Funcionalidades completas de CRUD (Criar, Ler, Atualizar, Apagar) para as tarefas.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+⚡ Interface Reativa: Experiência de utilizador fluida e sem recarregamentos de página, graças ao React.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🛡️ Rotas Protegidas: Apenas utilizadores autenticados podem aceder à sua lista de tarefas.
 
-### `npm test`
+🔄 Atualização em Tempo Real: O estado da aplicação é atualizado instantaneamente após cada ação.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🧠 Conceitos Praticados
+Este projeto foi uma oportunidade para exercitar os seguintes conceitos:
 
-### `npm run build`
+Frontend (React)
+Componentização: Criação de componentes com e sem estado (Stateful/Stateless).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Hooks Essenciais: Aplicação prática dos 5 principais Hooks:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+useState: Gestão de estado local.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+useEffect: Ciclo de vida e efeitos colaterais (como requisições a APIs).
 
-### `npm run eject`
+useContext: Gestão de estado global (autenticação).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+useRef: Acesso direto a elementos do DOM.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+useCallback e useMemo: Otimização de performance.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Listas e Chaves: Renderização eficiente de listas de dados.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Formulários Controlados: Gestão de inputs de formulário através do estado do React.
 
-## Learn More
+Navegação: Utilização do react-router-dom para criar uma navegação simples, alinhada e com rotas privadas.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Comunicação com API: Consumo de uma API RESTful utilizando axios.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Backend (Node.js)
+API RESTful: Construção de uma API com Express.js seguindo os padrões REST.
 
-### Code Splitting
+Rotas e Middlewares: Estruturação de endpoints e criação de middlewares (ex: para autenticação).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Autenticação com JWT: Geração e validação de tokens para proteger rotas.
 
-### Analyzing the Bundle Size
+Simulação de Base de Dados: Uso de arrays em memória para simular a persistência de dados.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+🛠️ Tecnologias Utilizadas
+O projeto foi construído com as seguintes tecnologias:
 
-### Making a Progressive Web App
+FrontEnd:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+React: A biblioteca principal para construir a interface de utilizador de forma reativa e componentizada.
 
-### Advanced Configuration
+React Router: Para gerir a navegação entre as páginas da aplicação (como ir do Login para a Home).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Axios: Para fazer as chamadas HTTP (requisições) para a API do backend, ou seja, para comunicar com o servidor.
 
-### Deployment
+BackEnd:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Node.js: O ambiente que permite executar JavaScript do lado do servidor.
 
-### `npm run build` fails to minify
+Express.js: Um framework para Node.js que simplifica a criação da API, das rotas e da lógica do servidor.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+JSON Web Token (JWT): Para criar um sistema de autenticação seguro, garantindo que apenas utilizadores logados possam aceder aos seus dados.
+
+⚙️ Como Executar o Projeto Localmente
+Siga os passos abaixo para executar a aplicação na sua máquina.
+
+Pré-requisitos
+Node.js (versão 18 ou superior recomendada)
+
+npm (geralmente instalado com o Node.js)
+
+Passos
+Clone o repositório:
+
+git clone [https://github.com/seu-utilizador/seu-repositorio.git](https://github.com/seu-utilizador/seu-repositorio.git)
+
+Navegue até à pasta do projeto:
+
+cd nome-do-repositorio
+
+Instale as dependências do Backend:
+
+cd backend
+npm install
+
+Instale as dependências do Frontend:
+
+cd ../frontend
+# Sai da pasta backend e entra na frontend
+npm install
+
+Executando a Aplicação
+Para executar a aplicação, precisará de dois terminais abertos.
+
+1. No Terminal 1 (inicie o Backend):
+
+# A partir da pasta raiz do projeto
+cd backend
+node server.js
+
+O terminal deverá exibir: Servidor backend rodando na porta 5000
+
+2. No Terminal 2 (inicie o Frontend):
+
+# A partir da pasta raiz do projeto
+cd frontend
+npm start
+
+O seu navegador abrirá automaticamente em http://localhost:3000.
+
+Credenciais para Teste
+Use os seguintes dados para fazer login na aplicação:
+
+Utilizador: usuario
+
+Senha: 123
+
+📜 Licença
+Este projeto está sob a licença MIT.
+
+Feito com ❤️ por Maria Eduarda Braz
